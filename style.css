@@ -5,12 +5,14 @@ body {
     height: 100vh;
     margin: 0;
     background: #222;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .card {
-    background: #eaeaea
+    background: #eaeaea;
     border-radius: 30px;
     padding: 2em;
     max-width: 420px;
-    margin: 1;
+    margin: 1em;
+    width: 100%
 }
