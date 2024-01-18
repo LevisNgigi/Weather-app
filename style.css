@@ -1,6 +1,16 @@
-{
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    box-sizing: border-box;
+    background: #222;
+}
+
+.card {
+    background: #eaeaea
+    border-radius: 30px;
+    padding: 2em;
+    max-width: 420px;
+    margin: 1;
 }
