@@ -38,3 +38,10 @@ let weather = {
     this.fetchWeather(document.querySelector(".search-bar").value);
   },
 };
+document
+  .querySelector(".search-bar")
+  .addEventListener("keyup", function (event) {
+    if (event.key == "Enter") {
+      weather.search();
+    }
+  });
