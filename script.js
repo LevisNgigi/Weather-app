@@ -1,21 +1,30 @@
 let weather = {
   apiKey: "336c5ed6d35751cd689cfebce6702ccd",
+  isMetric: true,
+
   fetchWeather: function (city) {
+    const units = this.isMetric ? "metric" : "imperial";
     fetch(
       "https://api.openweathermap.org/data/2.5/weather?q=" +
         city +
-        "&units=metric&appid=" +
+        "&units=" +
+        units +
+        "&appid=" +
         this.apiKey
     )
       .then((response) => {
         if (!response.ok) {
-          alert("No weather found.");
-          throw new Error("No weather found.");
+          throw new Error("City not found");
         }
         return response.json();
       })
-      .then((data) => this.displayWeather(data));
+      .then((data) => this.displayWeather(data))
+      .catch((error) => {
+        console.error(error);
+        alert("City not found. Please try again.");
+      });
   },
+
   displayWeather: function (data) {
     const { name } = data;
     const { icon, description } = data.weather[0];
@@ -25,7 +34,7 @@ let weather = {
     document.querySelector(".icon").src =
       "https://openweathermap.org/img/wn/" + icon + ".png";
     document.querySelector(".description").innerText = description;
-    document.querySelector(".temp").innerText = temp + "°C";
+    document.querySelector(".temp").innerText = temp + (this.isMetric ? "°C" : "°F");
     document.querySelector(".humidity").innerText =
       "Humidity: " + humidity + "%";
     document.querySelector(".wind").innerText =
@@ -34,6 +43,7 @@ let weather = {
     document.body.style.backgroundImage =
       "url('https://source.unsplash.com/1600x900/?" + name + "')";
   },
+
   search: function () {
     this.fetchWeather(document.querySelector(".search-bar").value);
   },
@@ -50,5 +60,21 @@ document
       weather.search();
     }
   });
+
+function toggleUnits() {
+  weather.isMetric = !weather.isMetric;
+  weather.fetchWeather(document.querySelector(".search-bar").value);
+}
+
+function fetchWeatherByLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      weather.fetchWeatherByCoordinates(latitude, longitude);
+    });
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
 
 weather.fetchWeather("Denver");
