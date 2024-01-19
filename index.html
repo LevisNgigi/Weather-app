@@ -15,23 +15,20 @@
   <div class="card">
     <div class="search">
       <input type="text" class="search-bar" placeholder="Search">
-      <button onclick="toggleUnits()">
-        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1.5em"
-          width="1.5em" xmlns="http://www.w3.org/2000/svg">
-          <!-- Your SVG path here -->
-        </svg>
-      </button>
+      <div class="toggle-button">
+        <button onclick="toggleUnits()">
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1.5em" width="1.5em"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M5 3a5 5 0 000 10h6a5 5 0 000-10H5zm6 9a4 4 0 100-8 4 4 0 000 8z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
       <button onclick="fetchWeatherByLocation()">Get Weather by Location</button>
     </div>
     <div class="weather loading">
-      <h2 class="city">Weather in Denver</h2>
-      <h1 class="temp">51°C</h1>
-      <div class="flex">
-        <img src="https://openweathermap.org/img/wn/04n.png" alt="" class="icon" />
-        <div class="description">Cloudy</div>
-      </div>
-      <div class="humidity">Humidity: 60%</div>
-      <div class="wind">Wind speed: 6.2 km/h</div>
+      <!-- ... (your existing weather content) ... -->
     </div>
   </div>
 </body>

@@ -25,6 +25,31 @@ let weather = {
       });
   },
 
+  fetchWeatherByCoordinates: function (latitude, longitude) {
+    const units = this.isMetric ? "metric" : "imperial";
+    fetch(
+      "https://api.openweathermap.org/data/2.5/weather?lat=" +
+        latitude +
+        "&lon=" +
+        longitude +
+        "&units=" +
+        units +
+        "&appid=" +
+        this.apiKey
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch weather data.");
+        }
+        return response.json();
+      })
+      .then((data) => this.displayWeather(data))
+      .catch((error) => {
+        console.error(error);
+        alert("Failed to fetch weather data.");
+      });
+  },
+
   displayWeather: function (data) {
     const { name } = data;
     const { icon, description } = data.weather[0];
