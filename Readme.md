@@ -26,7 +26,7 @@ After cloning launch the web app using live server and access it on your browser
 
 - Visual Studio Code
 
-## Live Lnk
+## Live Link
 
 In case you missed it - This is the link to my project! [Please do check it out!](https://levisngigi.github.io/Weather-app/)
 
